@@ -1,0 +1,89 @@
+<form *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <input [(ngModel)]="productbyId" (input)="onProductIdChange($event)" type="text" class="form-control" placeholder="Enter Product ID">
+  <button (click)="getProductById()" class="btn btn-secondary my-3" >Go To Edit</button>
+</form>
+
+<form *ngIf="product" [formGroup]="productForm" (ngSubmit)="updateProduct(product)">
+    <div class="form-group">
+
+
+      <label class="mt-2">Name</label>
+      <input formControlName="name" type="text" class="form-control" placeholder="Username" name="name">
+    </div>
+    @if(getIsError("name","required")){
+    <span class="text-danger">Name is required</span>
+    }
+
+    <div class="form-group">
+      <label class="mt-2">Price</label>
+      <input formControlName="price" type="number" class="form-control" placeholder="Price" name="price">
+    </div>
+    @if(getIsError("price","required")){
+      <span class="text-danger">Price is required</span>
+      }
+
+
+    <div class="form-group">
+      <label class="mt-2">imgURL</label>
+      <input formControlName="imgURL" type="text" class="form-control" placeholder="Image url" name="imgURL">
+    </div>
+    @if(getIsError("imgURL","required")){
+      <span class="text-danger">ImgURL is required</span>
+      }
+
+
+    <div class="form-group">
+      <label class="mt-2">description</label>
+      <input formControlName="description" type="text" class="form-control" placeholder="description" name="description">
+    </div>
+    @if(getIsError("description","required")){
+      <span class="text-danger">Description is required</span>
+      }
+
+
+    <div class="form-group">
+      <label class="mt-2">Discount</label>
+      <input formControlName="discount" type="number" class="form-control" placeholder="discount" name="discount">
+    </div>
+    @if(getIsError("discount","required")){
+      <span class="text-danger">Discount is required</span>
+      }
+
+
+    <div class="form-group">
+      <label class="mt-2">matrial</label>
+      <input formControlName="matrial" type="text" class="form-control" placeholder="matrial" name="matrial">
+    </div>
+    @if(getIsError("matrial","required")){
+      <span class="text-danger">Matrial is required</span>
+      }
+
+
+    <div class="form-group">
+      <label class="mt-2">quantity</label>
+      <input formControlName="quantity" type="number" class="form-control" placeholder="quantity" name="quantity">
+    </div>
+    @if(getIsError("quantity","required")){
+      <span class="text-danger">Quantity is required</span>
+      }
+
+
+    <select formControlName="categoryID" placeholder="categoryID" name="categoryID" class="mt-2">
+      <option value="1" selected>Choose Your Category</option>
+      <option value="2">Women's Clothing</option>
+      <option value="3">Men's Clothing</option>
+      <option value="4">Electronics</option>
+      <option value="5">Jewelery</option>
+    </select>
+    @if(getIsError("categoryID","required")){
+      <span class="text-danger">CategoryID is required</span>
+      }
+
+
+    <div style="margin-top: 20px;text-align: center;" >
+      <button type="submit" class="btn btn-primary my-3" [disabled]="productForm.invalid">Update Product</button>
+    </div>
+
+  </form>
+
+

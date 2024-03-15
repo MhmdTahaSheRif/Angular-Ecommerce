@@ -1,0 +1,49 @@
+<!--
+<form [formGroup]="userform" (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
+
+    <div class="form-group">
+      <label class="mt-2">E-mail</label>
+      <input formControlName="email" type="text" class="form-control" placeholder="email" name="email">
+    </div>
+    @if(getIsError("email","required")){
+      <span class="text-danger">email is required</span>
+      }
+
+    <div class="form-group">
+      <label class="mt-2">Password</label>
+      <input formControlName="password" type="text" class="form-control" placeholder="password" name="password">
+    </div>
+    @if(getIsError("password","required")){
+      <span class="text-danger">password is required</span>
+      }
+
+<br>
+<div style="text-align: center;">
+  <button type="button" class="btn btn-primary my-3" [disabled]="signupForm.invalid" (click)="redirectToLogin()">Sign up</button>
+</div>
+</form> -->
+
+<form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
+  <div class="form-group my-3">
+      <label for="inputEmail">Username</label>
+      <input type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.email"
+          #username="ngModel" required minlength="3">
+  </div>
+  @if(username.errors?.['required'] && username.dirty && username.touched ){
+  <span class="invalid-msg">Username is required</span>
+  }
+  @if(username.errors?.['minlength'] && username.dirty && username.touched ){
+  <span class="invalid-msg">Min length is 3</span>
+  }
+  <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control" placeholder="Password" name="password" #password="ngModel"
+          [(ngModel)]="user.password" required>
+  </div>
+  @if(password.invalid && password.dirty && password.touched){
+  <span class="invalid-msg">Password is required</span>
+  }
+  <div class="text-center my-3">
+    <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Sign Up</button>
+  </div>
+</form>
